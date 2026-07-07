@@ -17,3 +17,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 console.log("Firebase Connected Successfully!");
+const productsRef = collection(db, "products");
+
+async function loadProducts() {
+  const snapshot = await getDocs(productsRef);
+
+  snapshot.forEach((doc) => {
+    console.log(doc.data());
+  });
+}
+
+loadProducts();
