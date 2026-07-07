@@ -70,3 +70,9 @@ main h2{
     color:#0b8f3d;
     font-weight:bold;
 }
+.products{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+}
