@@ -1,6 +1,10 @@
 // Import Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-
+import {
+  getFirestore,
+  collection,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 const firebaseConfig = {
   apiKey: "AIzaSyBQehMWwcThf8NLMGeJIG-omcywEEiJpHs",
   authDomain: "raj-mini-mart.firebaseapp.com",
@@ -11,5 +15,5 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-
+const db = getFirestore(app);
 console.log("Firebase Connected Successfully!");
