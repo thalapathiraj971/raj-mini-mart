@@ -5,6 +5,7 @@ import {
   collection,
   getDocs
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
 const firebaseConfig = {
   apiKey: "AIzaSyBQehMWwcThf8NLMGeJIG-omcywEEiJpHs",
   authDomain: "raj-mini-mart.firebaseapp.com",
@@ -16,14 +17,24 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-console.log("Firebase Connected Successfully!");
-const productsRef = collection(db, "products");
 
 async function loadProducts() {
-  const snapshot = await getDocs(productsRef);
+  const snapshot = await getDocs(collection(db, "products"));
+
+  const productsDiv = document.getElementById("products");
+  productsDiv.innerHTML = "";
 
   snapshot.forEach((doc) => {
-    console.log(doc.data());
+    const p = doc.data();
+
+    productsDiv.innerHTML += `
+      <div class="product">
+        <img src="${p.image}" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <p>₹${p.price}</p>
+        <a href="https://wa.me/916369135650" class="btn">Order on WhatsApp</a>
+      </div>
+    `;
   });
 }
 
